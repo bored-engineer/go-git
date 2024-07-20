@@ -241,6 +241,11 @@ const (
 	// Filter if present, fetch-pack may send "filter" commands to request a
 	// partial clone or partial fetch and request that the server omit various objects from the packfile
 	Filter Capability = "filter"
+	// PackfileURIs Indicates to the server that the client is willing to receive
+	// URIs of any of the given protocols in place of objects in the
+	// sent packfile. Before performing the connectivity check, the
+	// client should download from all given URIs.
+	PackfileURIs Capability = "packfile-uris"
 )
 
 const userAgent = "go-git/5.x"
@@ -260,7 +265,7 @@ var known = map[Capability]bool{
 	NoProgress: true, IncludeTag: true, ReportStatus: true, DeleteRefs: true,
 	Quiet: true, Atomic: true, PushOptions: true, AllowTipSHA1InWant: true,
 	AllowReachableSHA1InWant: true, PushCert: true, SymRef: true,
-	ObjectFormat: true, Filter: true,
+	ObjectFormat: true, Filter: true, PackfileURIs: true,
 }
 
 var requiresArgument = map[Capability]bool{
