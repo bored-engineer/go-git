@@ -85,7 +85,7 @@ func (p *Parser) storeOrCache(oh *ObjectHeader) error {
 		return err
 	}
 
-	if err := p.onInflatedObjectContent(oh.Hash, oh.Offset, oh.Crc32, nil); err != nil {
+	if err := p.onInflatedObjectContent(oh.Hash, oh.Offset, oh.Crc32, oh.content.Bytes()); err != nil {
 		return err
 	}
 
